@@ -82,7 +82,6 @@ class DOMManager {
     static addRoom(id) {
         for(let house of this.houses) {
             if (house._id == id) {
-                $('#${house._id}-new-room');
                 house.rooms.push(new Room($(`#${house._id}-room-name`).val(), $(`#${house._id}-room-area`).val()));
                 HouseService.updateHouse(house)
                 .then(() => {
@@ -124,17 +123,16 @@ class DOMManager {
                     <div class="card">
                     <div class="row">
                     <div class="col-sm">
-                    <input type="text" id="house._id-room-name" class="form-control" Placeholder="Room Name">
+                    <input type="text" id="${house._id}-room-name" class="form-control" Placeholder="Room Name">
                     </div>
                     <div class="col-sm">
-                    <input type="text" id="house._id-room-area" class="form-control" Placeholder="Room Area">
+                    <input type="text" id="${house._id}-room-area" class="form-control" Placeholder="Room Area">
                     </div>
-                    </div>
+                    </div><br>
                     <button id="${house._id}-new-room" onClick="DOMManager.addRoom('${house._id}')" class="btn btn-primary form-control">Add</button>
                     </div>
                 </div>
-                </div><br>
-                `
+                </div><br>`
 
             );
 
@@ -142,12 +140,16 @@ class DOMManager {
                 $(`#${house._id}`).find('.card-body').append(
                     `<p>
                     <span id="name-${room._id}"><strong>Name: </strong> ${room.name}</span>
-                    <span id="area-${room._id}"><strong>Area: </strong> ${room.area}</span></p>
+                    <span id="area-${room._id}"><strong>Area: </strong> ${room.area}</span>
                     <button class="btn btn-danger" onClick="DOMManager.deleteRoom('${house._id}', '${room._id}')">Delete Room</button>
                     `
                 )
             }
+
+            
         }
+
+        
     }
 
 }
