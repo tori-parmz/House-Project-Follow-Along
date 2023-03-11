@@ -156,7 +156,7 @@ class DOMManager {
 
 $('#create-new-house').on("click", () => {
     DOMManager.createHouse($('#new-house-name').val());
-    $('#new-house-name').val("")
+    $('#new-house-name').val('')
 })
 
 DOMManager.getAllHouses();
